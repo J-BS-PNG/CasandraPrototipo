@@ -36,6 +36,16 @@ public class ConectarCassandra {
         }
         return null;
     }
+    
+    public boolean insert(String query){
+        try{
+            session.execute(query);
+            return true;
+        }catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        return false;
+    }
     public void cerraCassandra(){
         session.close();
     }
