@@ -20,8 +20,10 @@ public class Main {
         //System.out.println(data);
         //ResultSet res = conexion.consultaBD("select * from store.shopping_cart");
         //Row row = res.one();
-        producto p = new producto(1, "Gelato", "Postre", "LLeva chocolate", 232);
-        admin.guardarProducto(p);
+        //producto p = new producto(1, "Gelato", "Postre", "LLeva chocolate", 232);
+    
+        //admin.guardarProducto(p);
+        admin.obtenerNombres();
         admin.cerrarBase();
 
     }
