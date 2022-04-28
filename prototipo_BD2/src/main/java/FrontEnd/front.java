@@ -5,6 +5,7 @@
 package FrontEnd;
 
 import BackEnd.*;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -23,6 +24,16 @@ public class front extends javax.swing.JFrame {
         txtCategoria.setEditable(false);
         txtValorNutricional.setEditable(false);
         txtDescripcion.setEditable(false);
+        actualizarDatos();
+    }
+    
+    public void actualizarDatos(){
+        String[] strings = adminBD.obtenerNombres();
+        DefaultListModel<String> datos = new DefaultListModel<String>();
+        for(String nombres : strings){
+            datos.addElement(nombres);
+        }       
+        lstNombres.setModel(datos);
     }
 
     /**
@@ -274,6 +285,7 @@ public class front extends javax.swing.JFrame {
         txtCategoria.setText("");
         txtValorNutricional.setText("");
         txtDescripcion.setText("");
+        
     }//GEN-LAST:event_btnGuardarAlimentoActionPerformed
 
     private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
@@ -292,7 +304,7 @@ public class front extends javax.swing.JFrame {
                                     Integer.valueOf(txtValorNutricional.getText()));
 
         adminBD.guardarProducto(p);
-
+        actualizarDatos();
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -300,8 +312,7 @@ public class front extends javax.swing.JFrame {
         // TODO add your handling code here:
         producto p= adminBD.obtenerElemento(lstNombres.getSelectedValue());
         adminBD.eliminarElemento(p.getId());
-        
-        
+        actualizarDatos();
     }//GEN-LAST:event_btnElminarActionPerformed
 
     private void btnDesplegarInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesplegarInformacionActionPerformed
@@ -328,6 +339,7 @@ public class front extends javax.swing.JFrame {
         p.setValorNutricional(Integer.valueOf(txtValorNutricional.getText()));
 
         adminBD.guardarProducto(p);
+        actualizarDatos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
