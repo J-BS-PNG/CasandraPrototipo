@@ -47,10 +47,9 @@ public class adminBasesDeDatos {
                     + String.valueOf(alimento.getValorNutricional())+");";
             conexion.insert(dato);
             JOptionPane.showMessageDialog(null, "Dato Guardado");
-            System.out.println(dato);
             return true;
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error: " + ex);
         }
         return false;
     }
@@ -91,7 +90,6 @@ public class adminBasesDeDatos {
     
     public producto obtenerElemento(String nombre){
         try{
-            System.out.println(nombre);
             ResultSet res = conexion.consultaBD("select * from restaurante.inventarioAlimentos where nombre='"+nombre+"' ALLOW FILTERING;");
             Row row = res.one();
             producto p= new producto(row.getInt("idInventario"), row.getString("nombre"), row.getString("tipo"), row.getString("descripcion"), row.getInt("valornutricional"));
@@ -106,9 +104,7 @@ public class adminBasesDeDatos {
         try{
             System.out.println(id);
             String query= "delete from restaurante.inventarioAlimentos where idinventario="+id+";";
-            ResultSet res = conexion.consultaBD(query);
-            System.out.println("Elemento eliminado");
-            
+            ResultSet res = conexion.consultaBD(query);           
             JOptionPane.showMessageDialog(null, "Dato eliminado exitosamente");
         }catch(Exception ex){
             System.out.println("Error: " + ex);
@@ -124,7 +120,6 @@ public class adminBasesDeDatos {
                     + String.valueOf(alimento.getValorNutricional())+");";
             conexion.insert(dato);
             JOptionPane.showMessageDialog(null, "Dato actualizado");
-            System.out.println(dato);
             return true;
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
